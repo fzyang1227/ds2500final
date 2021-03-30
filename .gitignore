@@ -2,6 +2,6 @@
 initial_data/*
 
 # keeping .gitkeep so folder shows up
-! initial_data/.gitkeep
+!initial_data/.gitkeep
 
 clean_data
