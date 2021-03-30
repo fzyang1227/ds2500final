@@ -1,0 +1,7 @@
+# excluding everything in folder
+initial_data/*
+
+# keeping .gitkeep so folder shows up
+! initial_data/.gitkeep
+
+clean_data
