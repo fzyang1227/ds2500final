@@ -35,11 +35,12 @@ def convert_val(df):
     df['creator'] = [re.search('\"name\":\"(.+?)\",\"slug\"', x).group(1) if '\"slug\"' in x
                      else re.search('\"name\":\"(.+?)\",\"is_registered\"', x).group(1) for x in df['creator']]
     for col in dict_col:
-        df[col] = [json.loads(x) if isinstance(x, str) else x for x in df[col]]
-    df['category'] = [x['name'] if isinstance(x, dict) else x for x in df['category']]
-    df['location'] = [x['short_name'] if isinstance(x, dict) else x for x in df['location']]
-    df['urls'] = [x['web']['project'] if isinstance(x, dict) else x for x in df['urls']]
-    print(df['category'].values[0])
+        df = df[df[col].apply(lambda x: isinstance(x, (str, bytes)))]
+        df[col] = [json.loads(x) for x in df[col]]
+    df['category'] = [x['name'] for x in df['category']]
+    df['location'] = [x['short_name'] for x in df['location']]
+    df['urls'] = [x['web']['project'] for x in df['urls']]
+    df['slug'] = [x.split('-') for x in df['slug']]
 
     return df
 
@@ -56,7 +57,6 @@ def clean_csv(df_name):
     us_df = df[df.country_displayable_name == 'the United States']
     us_df = convert_val(us_df)
     end = time.time()
-    print(us_df)
     print(end-start, 'seconds')
     return us_df
 
