@@ -11,6 +11,7 @@ import glob
 import pandas as pd
 import time
 import re
+import string
 import json
 
 pd.options.mode.chained_assignment = None
@@ -25,10 +26,23 @@ data_col = ['backers_count', 'blurb', 'category', 'country_displayable_name',
 
 dict_col = ['category', 'location', 'urls']
 
+def word_list(df):
+    ''' Function: word_list
+        Parameters: df (dataframe)
+        Returns: df (dataframe)
+        Does: changes the dataframe values of strings and cleans them
+              into a list of lowercase words/numbers
+    '''
+    df = df[df['blurb'].apply(lambda x: isinstance(x, (str, bytes)))]
+    df['blurb'] = [re.sub(r'[^ \nA-Za-z0-9/]+', '', x).lower().split() for x in df['blurb']]
+    df['slug'] = [x.split('-') for x in df['slug']]
+    return df
+
+
 def convert_val(df):
     ''' Function: convert_val
-        Parameters: df (dataframe), col_name (string)
-        Returns: df_convert (dataframe)
+        Parameters: df (dataframe)
+        Returns: df (dataframe)
         Does: changes the dataframe values of string dictionaries
               to actual values and gets needed values
     '''
@@ -40,9 +54,8 @@ def convert_val(df):
     df['category'] = [x['name'] for x in df['category']]
     df['location'] = [x['short_name'] for x in df['location']]
     df['urls'] = [x['web']['project'] for x in df['urls']]
-    df['slug'] = [x.split('-') for x in df['slug']]
-
     return df
+
 
 def clean_csv(df_name):
     ''' Function: clean_csv
@@ -55,7 +68,9 @@ def clean_csv(df_name):
     df = pd.read_csv(df_name, index_col = 'id', usecols = data_col)
     us_df = df[df.country_displayable_name == 'the United States']
     us_df = convert_val(us_df)
+    us_df = word_list(us_df)
     return us_df
+
 
 def open_csv():
     ''' Function: open_csv
