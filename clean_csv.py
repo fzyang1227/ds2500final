@@ -52,12 +52,9 @@ def clean_csv(df_name):
               removes specific columns and filters only US Kickstarters
 
     '''
-    start = time.time()
     df = pd.read_csv(df_name, index_col = 'id', usecols = data_col)
     us_df = df[df.country_displayable_name == 'the United States']
     us_df = convert_val(us_df)
-    end = time.time()
-    print(end-start, 'seconds')
     return us_df
 
 def open_csv():
@@ -72,6 +69,7 @@ def open_csv():
         os.makedirs('clean_data')
 
     # gets names of files in initial_data folder
+    start = time.time()
     for filename in glob.glob(os.path.join(path, '*.csv')):
         clean_df = clean_csv(filename)
 
@@ -80,7 +78,8 @@ def open_csv():
             csv_name = filename.replace(path, '')
 
         clean_df.to_csv(project_directory + '\\clean_data\\' + csv_name, index = False)
-
+    end = time.time()
+    print(end - start, 'seconds')
 
 
 
