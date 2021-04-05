@@ -8,3 +8,6 @@ Dataset:
 
 https://webrobots.io/kickstarter-datasets/
 
+Presentation:
+https://docs.google.com/presentation/d/1q78R2EHl_tyBju1rvtcOUOWHf-lSQpRu3eQ6fTZe0Ig/edit?usp=sharing
+
