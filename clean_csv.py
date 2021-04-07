@@ -95,9 +95,3 @@ def open_csv():
         clean_df.to_csv(project_directory + '\\clean_data\\' + csv_name, index = False)
     end = time.time()
     print(end - start, 'seconds')
-
-
-
-
-
-
