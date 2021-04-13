@@ -4,6 +4,7 @@
 '''
 from clean_csv import *
 
+
 if __name__ == '__main__':
     open_csv()
 
