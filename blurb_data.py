@@ -24,7 +24,7 @@ def read_csv():
 def blurb(csv):
     words = {}
     for row in csv:
-        blurb = json.loads(row[1].replace('\'', '\"'))
+        blurb = row[1].split()
         for i in range(len(blurb)):
             if blurb[i] in STOPWORDS:
                 continue
@@ -54,8 +54,4 @@ def visualize_blurb(word_dict):
         plt.annotate(str(y_list[i]), xy=(x_list[i],y_list[i]), ha='center', va='bottom')
     plt.show()
 
-if __name__ == '__main__':
-    csv = read_csv()
-    word_dict = blurb(csv)
-    visualize_blurb(word_dict)
     

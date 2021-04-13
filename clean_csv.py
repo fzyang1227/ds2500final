@@ -33,8 +33,8 @@ def word_list(df):
               into a list of lowercase words/numbers
     '''
     df = df[df['blurb'].apply(lambda x: isinstance(x, (str, bytes)))]
-    df['blurb'] = [re.sub(r'[^ \nA-Za-z0-9/]+', '', x).lower().split() for x in df['blurb']]
-    df['slug'] = [x.split('-') for x in df['slug']]
+    df['blurb'] = [re.sub(r'[^ \nA-Za-z0-9/]+', '', x).lower() for x in df['blurb']]
+    df['slug'] = [x.replace('-', ' ') for x in df['slug']]
     return df
 
 
