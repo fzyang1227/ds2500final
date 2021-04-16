@@ -37,12 +37,12 @@ def blurb(csv):
     
     sorted_words = dict(sorted(words.items(), key=lambda item: item[1], reverse=True))          
     
-    return list(sorted_words.items())[:20]
+    return list(sorted_words.items())
 
 def visualize_blurb(word_dict):
     x_list = []
     y_list = []
-    for i in range(len(word_dict)):
+    for i in range(20):
         x_list.append(word_dict[i][0])
         y_list.append(word_dict[i][1])
     plt.bar(x_list, y_list)
