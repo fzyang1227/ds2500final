@@ -55,6 +55,19 @@ def convert_val(df):
     df['urls'] = [x['web']['project'] for x in df['urls']]
     return df
 
+def time_convert(df):
+    ''' Function: time_convert
+        Parameters: df (dataframe)
+        Returns: df (dataframe)
+        Does: adds columns for time between start and end time for Kickstarters
+              specifically preview_time/fundraising_time/state_change_time in days
+    '''
+    df['preview_time'] = (df['launched_at'] - df['created_at']) // 86400
+    df['fundraising_time'] = (df['deadline'] - df['launched_at']) // 86400
+    df['state_change'] = (df['state_changed_at'] - df['launched_at']) // 86400
+    df.drop(columns=['launched_at', 'created_at', 'deadline', 'state_changed_at'], inplace = True)
+    return df
+
 
 def clean_csv(df_name):
     ''' Function: clean_csv
@@ -68,6 +81,7 @@ def clean_csv(df_name):
     us_df = df[df.country_displayable_name == 'the United States']
     us_df = convert_val(us_df)
     us_df = word_list(us_df)
+    us_df = time_convert(us_df)
     return us_df
 
 
