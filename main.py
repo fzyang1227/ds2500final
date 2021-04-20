@@ -15,6 +15,7 @@ if __name__ == '__main__':
     visualize_blurb(word_dict)
     get_location_success_failure_data()
     get_location_pledged_data()
+    
     dataset = read_csv_short()
     
     # plots max depth until 20
@@ -24,4 +25,5 @@ if __name__ == '__main__':
     dectree(3, dataset)
     
     # highest precision png saved at max_depth = 6
+    # will overwrite max_depth=3 png, use saved pngs
     dectree(6, dataset)
