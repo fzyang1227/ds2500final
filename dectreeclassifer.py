@@ -6,6 +6,7 @@ Spring 2021
 
 import pandas as pd
 import graphviz
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn import tree
@@ -62,22 +63,26 @@ def dectreeplot(depth, dataset):
     plt.xlabel("Max Depth")
     plt.ylabel("Accuracy")
     plt.title("Decision Tree Max Depth and Accuracy")
+    plt.xticks(np.arange(0, len(x)+1, 2))
     plt.show()
     
     plt.plot(x, y2)
     plt.xlabel("Max Depth")
     plt.ylabel("Precision")
     plt.title("Decision Tree Max Depth and Precision")
+    plt.xticks(np.arange(0, len(x)+1, 2))
     plt.show()
     
     plt.plot(x, y3)
     plt.xlabel("Max Depth")
     plt.ylabel("Recall")
     plt.title("Decision Tree Max Depth and Recall")
+    plt.xticks(np.arange(0, len(x)+1, 2))
     plt.show()
     
     plt.plot(x, y4)
     plt.xlabel("Max Depth")
     plt.ylabel("f1-Score")
     plt.title("Decision Tree Max Depth and f1-Score")
+    plt.xticks(np.arange(0, len(x)+1, 2))
     plt.show()
