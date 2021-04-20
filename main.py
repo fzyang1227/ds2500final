@@ -20,5 +20,8 @@ if __name__ == '__main__':
     # plots max depth until 20
     dectreeplot(20, dataset)
     
-    # highest accuracy png saved at max_depth = 3
+    # highest accuracy, recall, f1-score png saved at max_depth = 3
     dectree(3, dataset)
+    
+    # highest precision png saved at max_depth = 6
+    dectree(6, dataset)

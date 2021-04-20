@@ -9,7 +9,7 @@ import graphviz
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn import tree
-import matplotlib.pyplot as py 
+import matplotlib.pyplot as plt
 
 def read_csv_short():
     df = pd.read_csv('clean_data\\Kickstarter.csv') 
@@ -31,22 +31,53 @@ def dectree(depth, dataset):
     y_pred = clf.predict(X_test)
     
     print(confusion_matrix(y_test, y_pred))
-    print(classification_report(y_test, y_pred))
+    print(classification_report(y_test, y_pred, output_dict = True))
     
     dot_data = tree.export_graphviz(clf, out_file=None, feature_names=X.columns)
     
     graph = graphviz.Source(dot_data, format="png")
     graph.render("decision_tree_graphivz")
     
-    return classification_report(y_test, y_pred, output_dict=True)['accuracy'] 
+    accuracy = classification_report(y_test, y_pred, output_dict=True)['accuracy'] 
+    precision = classification_report(y_test, y_pred, output_dict=True)['weighted avg']['precision']
+    recall = classification_report(y_test, y_pred, output_dict=True)['weighted avg']['recall']
+    f1 = classification_report(y_test, y_pred, output_dict=True)['weighted avg']['f1-score']
+    
+    return (accuracy, precision, recall, f1)
     
 def dectreeplot(depth, dataset):
     x = []
-    y = []
+    y1 = []
+    y2 = []
+    y3 = []
+    y4 = []
     for i in range(1, depth):
         x.append(i)
-        y.append(dectree(i, dataset))
-    py.plot(x, y)
-    py.xlabel("Max Depth")
-    py.ylabel("Accuracy")
-    py.title("Decision Tree Max Depth and Accuracy")
+        y1.append(dectree(i, dataset)[0])
+        y2.append(dectree(i, dataset)[1])
+        y3.append(dectree(i, dataset)[2])
+        y4.append(dectree(i, dataset)[3])
+    
+    plt.plot(x, y1)
+    plt.xlabel("Max Depth")
+    plt.ylabel("Accuracy")
+    plt.title("Decision Tree Max Depth and Accuracy")
+    plt.show()
+    
+    plt.plot(x, y2)
+    plt.xlabel("Max Depth")
+    plt.ylabel("Precision")
+    plt.title("Decision Tree Max Depth and Precision")
+    plt.show()
+    
+    plt.plot(x, y3)
+    plt.xlabel("Max Depth")
+    plt.ylabel("Recall")
+    plt.title("Decision Tree Max Depth and Recall")
+    plt.show()
+    
+    plt.plot(x, y4)
+    plt.xlabel("Max Depth")
+    plt.ylabel("f1-Score")
+    plt.title("Decision Tree Max Depth and f1-Score")
+    plt.show()
