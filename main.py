@@ -19,11 +19,11 @@ if __name__ == '__main__':
     dataset = read_csv_short()
     
     # plots max depth until 20
-    dectreeplot(20, dataset)
+    #dectreeplot(20, dataset)
     
     # highest accuracy, recall, f1-score png saved at max_depth = 3
-    dectree(3, dataset)
+    #dectree(dataset)
     
     # highest precision png saved at max_depth = 6
-    # will overwrite max_depth=3 png, use saved pngs
-    dectree(6, dataset)
+    # will overwrite last png, use saved pngs
+    dectree(dataset)
