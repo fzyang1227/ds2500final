@@ -30,8 +30,8 @@ def dectree(depth, dataset):
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     
-    # print(confusion_matrix(y_test, y_pred))
-    # print(classification_report(y_test, y_pred))
+    print(confusion_matrix(y_test, y_pred))
+    print(classification_report(y_test, y_pred))
     
     dot_data = tree.export_graphviz(clf, out_file=None, feature_names=X.columns)
     
