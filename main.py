@@ -10,10 +10,15 @@ from dectreeclassifer import *
 
 if __name__ == '__main__':
     # open_csv()
-    '''csv = read_csv()
+    csv = read_csv()
     word_dict = blurb(csv)
     visualize_blurb(word_dict)
     get_location_success_failure_data()
-    get_location_pledged_data()'''
+    get_location_pledged_data()
     dataset = read_csv_short()
-    dectree(dataset)
+    
+    # plots max depth until 20
+    dectreeplot(20, dataset)
+    
+    # highest accuracy png saved at max_depth = 3
+    dectree(3, dataset)

@@ -1,0 +1,20 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="spotlight <= 0.5\ngini = 0.514\nsamples = 1923\nvalue = [76, 616, 43, 1188]"] ;
+1 [label="backers_count <= 36.5\ngini = 0.283\nsamples = 735\nvalue = [76, 616, 43, 0]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="goal <= 410.0\ngini = 0.248\nsamples = 666\nvalue = [70, 573, 23, 0]"] ;
+1 -> 2 ;
+3 [label="gini = 0.523\nsamples = 39\nvalue = [8, 25, 6, 0]"] ;
+2 -> 3 ;
+4 [label="gini = 0.226\nsamples = 627\nvalue = [62, 548, 17, 0]"] ;
+2 -> 4 ;
+5 [label="goal <= 5675.0\ngini = 0.52\nsamples = 69\nvalue = [6, 43, 20, 0]"] ;
+1 -> 5 ;
+6 [label="gini = 0.219\nsamples = 16\nvalue = [0, 2, 14, 0]"] ;
+5 -> 6 ;
+7 [label="gini = 0.376\nsamples = 53\nvalue = [6, 41, 6, 0]"] ;
+5 -> 7 ;
+8 [label="gini = 0.0\nsamples = 1188\nvalue = [0, 0, 0, 1188]"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

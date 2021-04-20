@@ -9,6 +9,7 @@ import graphviz
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn import tree
+import matplotlib.pyplot as py 
 
 def read_csv_short():
     df = pd.read_csv('clean_data\\Kickstarter.csv') 
@@ -19,19 +20,33 @@ def read_csv_short():
     
     return df
 
-def dectree(dataset):
+def dectree(depth, dataset):
     df = dataset.copy()   
     y = df["state"]  
     X = df.drop(["state"], axis = 1)
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
-    clf = tree.DecisionTreeClassifier() 
+    clf = tree.DecisionTreeClassifier(max_depth=depth) 
     clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     
-    print(confusion_matrix(y_test, y_pred))
-    print(classification_report(y_test, y_pred))
+    # print(confusion_matrix(y_test, y_pred))
+    # print(classification_report(y_test, y_pred))
     
     dot_data = tree.export_graphviz(clf, out_file=None, feature_names=X.columns)
     
     graph = graphviz.Source(dot_data, format="png")
+    graph.render("decision_tree_graphivz")
+    
+    return classification_report(y_test, y_pred, output_dict=True)['accuracy'] 
+    
+def dectreeplot(depth, dataset):
+    x = []
+    y = []
+    for i in range(1, depth):
+        x.append(i)
+        y.append(dectree(i, dataset))
+    py.plot(x, y)
+    py.xlabel("Max Depth")
+    py.ylabel("Accuracy")
+    py.title("Decision Tree Max Depth and Accuracy")
