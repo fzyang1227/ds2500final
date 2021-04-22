@@ -15,7 +15,7 @@ import json
 
 pd.options.mode.chained_assignment = None
 
-project_directory = '/Users/amaya/Desktop/ds2500final' # INSERT YOUR PROJECT DIRECTORY HERE
+project_directory = 'C:\\Users\\fzyan\\Documents\\College\\ds2500project' # INSERT YOUR PROJECT DIRECTORY HERE
 path = project_directory + '\\initial_data'
 
 data_col = ['backers_count', 'blurb', 'category', 'country_displayable_name',
