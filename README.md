@@ -13,7 +13,7 @@ https://docs.google.com/presentation/d/1q78R2EHl_tyBju1rvtcOUOWHf-lSQpRu3eQ6fTZe
 Final Project Report:
 https://docs.google.com/document/d/1KqcbJLiVJ08DMeXD06p6mbaxk3tCGyAbD5LLVAY3FbY/edit
 
-##Quick Description of clean_data columns:
+## Quick Description of clean_data columns:
 - backers_count: # of backers (int)
 - blurb: description of Kickstarter (string)
 - category: (string)
@@ -35,4 +35,4 @@ https://docs.google.com/document/d/1KqcbJLiVJ08DMeXD06p6mbaxk3tCGyAbD5LLVAY3FbY/
 - fundraising_time: amount of days between launch and deadline (int)
 - state_change: amount of days between launch and state change time (int)
   
-###*note: all these are formatted as strings when retrieved from csv file
+### *note: all these are formatted as strings when retrieved from csv file
